@@ -1,0 +1,42 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title>{{data.openedCard.name}}</h1>
+  <form #dialogForm="ngForm">
+        <mat-dialog-content>
+            <p>in list  {{ data.currentList.name }} </p>
+            <div>
+                <mat-form-field>
+                    <input matInput #cardName name="CardName" [(ngModel)]="data.openedCard.name" placeholder="Name">
+                </mat-form-field>
+            </div>
+            
+            <div>
+                <mat-form-field>
+                    <input matInput #cardDesc name="CardDesc" [(ngModel)]="data.openedCard.desc" placeholder="Description">
+                </mat-form-field>
+            </div>
+            
+            <div>
+                <mat-form-field>
+                    <input matInput #cardDueIn name="CardDueIn" [(ngModel)]="data.openedCard.due_in" placeholder="Due In">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field>
+                    <input matInput #cardIsClosed name="CardIsClosed" [(ngModel)]="data.openedCard.isClosed" placeholder="Board Closed">
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field>
+                    <input matInput #cardPos name="CardPos" [(ngModel)]="data.openedCard.pos" placeholder="Position of Card">
+                </mat-form-field>
+            </div>
+
+        </mat-dialog-content>
+        <div mat-dialog-actions>
+            <button mat-button (click)="onCloseClick()">Close</button>
+            <button mat-button [disabled]="dialogForm.form.pristine" (click)="onSaveClick()">Save</button> 
+        </div>
+    </form>
+</div>

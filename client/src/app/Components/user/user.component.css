@@ -1,0 +1,8 @@
+mat-card {
+    width: calc(100% - 300px);
+    height: calc(100% - 200px);
+    background:#0079BF;
+  }
+.board-item {
+  color: azure;
+}

@@ -1,0 +1,34 @@
+<h2> Hey {{ currentUser.fullname }} </h2>
+
+<p>
+    Boards : 
+</p>
+
+<div>
+    <mat-paginator [length]="length"
+        [pageSize]="10"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = OnPageChange($event)">
+    </mat-paginator>
+    <mat-grid-list cols="4" rowHeight="2:1">
+        <mat-grid-tile *ngFor="let board of pagedBoardList" >
+            <mat-card class="board-item" (click)="navigateToBoard(board)">
+              {{ board.name }} 
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <form #createBoardForm="ngForm" (ngSubmit)="createBoard(boardName.value)">
+                <div>
+                    <mat-form-field>
+                        <input #boardName matInput name="BoardName" placeholder="Name">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-button type="submit">Create</button> 
+                </div>
+            </form>
+        </mat-grid-tile>
+    </mat-grid-list>
+    
+
+</div>

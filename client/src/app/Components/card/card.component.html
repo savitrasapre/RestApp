@@ -1,0 +1,11 @@
+<ul class="list-items">
+  <li *ngFor="let cardItem of globalCardsRef | filterCards:inList:pipeCount | sortCards:'pos'" (click)="openDialog(cardItem)">
+    {{ cardItem.name }}
+  </li>
+</ul>
+<form #addCardForm="ngForm" (ngSubmit)="addCardToList(addCardForm)">
+  <mat-form-field class="listName">
+      <input #newCardName matInput name="addCardName" [(ngModel)]="newCard.name" placeholder="Add another card">
+  </mat-form-field>
+  <button type="submit" style="display:none" mat-button></button>
+</form>

@@ -1,0 +1,31 @@
+<section class="lists-container">
+    <div *ngFor="let listItem of globalListsRef | filterLists:false:updateCount | sortLists:'pos'" class="list">
+      <div>
+        <h3 class="list-title">
+              {{ listItem.name}}         
+        </h3>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="archiveCurrentList(listItem)">
+            <mat-icon>archive</mat-icon>
+            <span>Archive This List</span>
+          </button>
+        </mat-menu>
+      </div>
+      <div *ngIf="listItem">
+        <app-card [inList]="listItem"></app-card>
+      </div>
+    </div>
+</section>
+
+<div class="add-list-form">
+    <form #addListForm="ngForm" (ngSubmit)="sumbitNewList(newListName.value)">
+        <mat-form-field class="listName">
+            <input #newListName matInput placeholder="+ Add another list" name="addListName" required>
+        </mat-form-field>
+        <button type="submit" class="btnAddBoard" mat-raised-button >Add List</button>
+    </form>
+</div>
+
