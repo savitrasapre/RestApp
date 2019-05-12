@@ -1,8 +1,15 @@
-mat-card {
-    width: calc(100% - 300px);
-    height: calc(100% - 200px);
-    background:#0079BF;
-  }
+
 .board-item {
   color: azure;
+}
+
+mat-grid-list {
+  width: 70%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+mat-grid-tile {
+  background:#0079BF;
 }

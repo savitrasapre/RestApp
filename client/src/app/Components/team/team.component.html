@@ -1,0 +1,25 @@
+<div class="eachTeam" *ngFor="let team of userTeams">
+    <mat-grid-list cols="4" rowHeight="200px">
+        <mat-grid-tile>
+            <div class="team-list-header" style="display:inline-block">
+                <h3> {{ team.name }} </h3>
+                 <button mat-button> Boards </button> 
+                <button mat-button> Members </button> 
+                <button mat-button> Settings </button> 
+                <div><mat-card>{{ team.idMembers }}</mat-card> </div>   
+            </div>
+            <!-- -->
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+<form #createTeamForm="ngForm" (ngSubmit)="createTeam()">
+    <div>
+        <mat-form-field>
+            <input #teamName matInput placeholder="Create a team" name="TeamName" [(ngModel)]="newTeam.name">
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-button style="display:none" type="submit">Create</button> 
+    </div>
+</form>
+

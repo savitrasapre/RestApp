@@ -1,34 +1,41 @@
-<h2> Hey {{ currentUser.fullname }} </h2>
-
-<p>
-    Boards : 
-</p>
+<mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button ><mat-icon>menu</mat-icon></button>
+    <h1 class="app-name">Home</h1>
+</mat-toolbar>
+<h2> Welcome back, {{ currentUser.fullname }} </h2>
 
 <div>
+    <p>Personal boards : </p>
     <mat-paginator [length]="length"
         [pageSize]="10"
         [pageSizeOptions]="pageSizeOptions"
         (page)="pageEvent = OnPageChange($event)">
     </mat-paginator>
-    <mat-grid-list cols="4" rowHeight="2:1">
-        <mat-grid-tile *ngFor="let board of pagedBoardList" >
-            <mat-card class="board-item" (click)="navigateToBoard(board)">
+    <mat-grid-list cols="4" rowHeight="70px" >
+        <mat-grid-tile class="board-item" *ngFor="let board of pagedBoardList" (click)="navigateToBoard(board)">
+            <!-- <mat-card  (click)="navigateToBoard(board)">
               {{ board.name }} 
-            </mat-card>
+            </mat-card> -->
+            {{ board.name }} 
         </mat-grid-tile>
         <mat-grid-tile>
-            <form #createBoardForm="ngForm" (ngSubmit)="createBoard(boardName.value)">
-                <div>
-                    <mat-form-field>
-                        <input #boardName matInput name="BoardName" placeholder="Name">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <button mat-button type="submit">Create</button> 
-                </div>
-            </form>
+                <div class="add-board">
+                        <form #createBoardForm="ngForm" (ngSubmit)="createBoard(boardName.value)">
+                            <div>
+                                <mat-form-field>
+                                    <input #boardName matInput name="BoardName" placeholder="Add new Board">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button mat-button style="display:none" type="submit"></button> 
+                            </div>
+                        </form>
+                    </div>
         </mat-grid-tile>
     </mat-grid-list>
-    
+</div>
 
+<div class="teams">
+    <h3>Teams</h3>
+    <app-team></app-team>
 </div>

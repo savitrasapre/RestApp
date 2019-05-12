@@ -4,9 +4,11 @@ import { User } from '../../Models/user.model';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Board } from 'src/app/Models/board.model';
 import { PageEvent } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { BoardService } from 'src/app/Services/board.service';
+import { TeamService } from 'src/app/Services/team.service';
+import { Team } from 'src/app/Models/team.model';
 
 @Component({
   selector: 'app-user',
@@ -25,19 +27,31 @@ export class UserComponent implements OnInit {
 
   constructor(private _authService : AuthService, 
     private _router : Router,
-    private _boardService : BoardService
+    private _boardService : BoardService,
+    private _userService: UserService,
+    private _route : ActivatedRoute
     ) { }
 
   ngOnInit() {
-    this.fetchCurrentUserWithBoards();
+    if(this._authService.isAuthenticated)
+    {
+      this.fetchCurrentUserComponents();
+    }
+    else
+    {
+      //hack for now
+      this._router.navigate(['']);
+      this._authService.isAuthenticated = false;
+    }
   }
 
-  fetchCurrentUserWithBoards()
+  fetchCurrentUserComponents()
   {
     this.currentUser = this._authService.getuser();
-    this._boardService.getAllBoardsforUser(this.currentUser._id).subscribe((boardsFromQuery : Board[]) => {    
-      this.boards = boardsFromQuery;
+    this._userService.getUserDetailsInParallel(this.currentUser._id).subscribe(userData => {
+      this.boards = userData[0];
       this.pagedBoardList = this.boards.slice(0,10);
+      console.log(userData[1]);
     });
   }
 
@@ -59,11 +73,8 @@ export class UserComponent implements OnInit {
   {
     this.newBoard.name = boardName;
     this.newBoard.user_id = this.currentUser._id;
-
     this._boardService.createNewBoard(this.newBoard).subscribe((boardFromQuery : Board) => {
       this.navigateToBoard(boardFromQuery);
     });
-
   }
-
 }

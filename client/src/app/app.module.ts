@@ -21,6 +21,7 @@ import { SortListsPipe } from './Common/Pipes/sort-lists.pipe';
 import { FilterCardsPipe } from './Common/Pipes/filter-cards.pipe';
 import { CardModalComponent } from './Components/card/card-modal/card-modal.component';
 import { SortCardsPipe } from './Common/Pipes/sort-cards.pipe';
+import { TeamComponent } from './Components/team/team.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { SortCardsPipe } from './Common/Pipes/sort-cards.pipe';
     SortListsPipe,
     FilterCardsPipe,
     CardModalComponent,
-    SortCardsPipe
+    SortCardsPipe,
+    TeamComponent
   ],
   imports: [
     BrowserModule,

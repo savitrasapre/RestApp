@@ -3,7 +3,6 @@ import { CardService } from 'src/app/Services/card.service';
 import { List } from 'src/app/Models/list.model';
 import { Card } from 'src/app/Models/card.model';
 import { BoardService } from 'src/app/Services/board.service';
-import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { CardModalComponent } from './card-modal/card-modal.component';
 
@@ -59,8 +58,7 @@ export class CardComponent implements OnInit {
 
   openDialog(cardItemClicked: Card)
   { 
-    let dialogRef = this._matDialog.open(CardModalComponent,{data : { openedCard : cardItemClicked, currentList : this.inList }, width : '600px', height: '600px'});
-    
+    let dialogRef = this._matDialog.open(CardModalComponent,{data : { openedCard : cardItemClicked, currentList : this.inList }, width : '600px', height: '600px'});    
     dialogRef.afterClosed().subscribe(result => {
       if(result){
         this.updateCard(cardItemClicked);

@@ -32,7 +32,7 @@ public class BoardController {
     @GetMapping("")
     public ResponseEntity<List<Board>> getAllBoardNames(@RequestParam("userId") String userID)
     {
-        System.out.println("In getAllBoards!");
+
         List<Board> boardlistFromQuery = boardRepo.findBoardsByUserID(new ObjectId(userID));
 
         //List<String> boardNames = boardlistFromQuery.stream().map(board -> board.getName()).collect(Collectors.toList());

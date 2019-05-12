@@ -11,12 +11,15 @@ export class AuthService {
 
   constructor(private _http : HttpClient) { }
 
+  public isAuthenticated: boolean;
   user : User;
 
   loginUser(email : String) : Observable<User> { 
     return this._http.post<User>('//localhost:8080/auth',{email})
             .pipe(
               tap( userReturned => {
+                console.log("post called!");
+                this.isAuthenticated = true;
                 this.setUser(userReturned);
               })
             );
@@ -29,5 +32,4 @@ export class AuthService {
   getuser() : User {
     return this.user;
   }
-
 }
