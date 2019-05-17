@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import java.util.Optional;
 
 @CrossOrigin
@@ -17,7 +17,7 @@ public class TeamController {
     @Autowired
     TeamRepository teamRepository;
 
-
+    @CrossOrigin
     @GetMapping("")
     public ResponseEntity<Team[]> getAllTeamsForUser(@RequestParam("userId") String userID)
     {
@@ -32,7 +32,7 @@ public class TeamController {
             return ResponseEntity.ok().body(optionalTeams.get());
         }
     }
-
+    @CrossOrigin
     @PostMapping("")
     public ResponseEntity<Team> createTeamForUser(@RequestBody Team teamToCreate)
     {
@@ -50,5 +50,22 @@ public class TeamController {
         }
     }
 
+    @CrossOrigin
+    @PutMapping("/{teamId}")
+    public ResponseEntity<Team> addUserToTeam(@RequestBody Team teamToUpdate)
+    {
+        Optional<Team> teamOptional = teamRepository.findByTeamName(teamToUpdate.getName());
+
+        if(teamOptional.isEmpty())
+        {
+            return ResponseEntity.notFound().build();
+        }
+        else
+        {
+            System.out.println("added user to team");
+            teamRepository.save(teamToUpdate);
+            return ResponseEntity.ok().body(teamToUpdate);
+        }
+    }
 
 }

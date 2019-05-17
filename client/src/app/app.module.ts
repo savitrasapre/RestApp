@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule, MatGridListModule, MatPaginatorModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatSidenavModule, MatListModule, MatExpansionModule, MatDialogModule } from "@angular/material";
+import { MatInputModule, MatGridListModule, MatPaginatorModule, MatButtonModule, MatMenuModule, MatToolbarModule, MatSidenavModule, MatListModule, MatExpansionModule, MatDialogModule, MatAutocompleteModule, MatSnackBarModule } from "@angular/material";
 import { MatIconModule } from '@angular/material/icon';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { FilterCardsPipe } from './Common/Pipes/filter-cards.pipe';
 import { CardModalComponent } from './Components/card/card-modal/card-modal.component';
 import { SortCardsPipe } from './Common/Pipes/sort-cards.pipe';
 import { TeamComponent } from './Components/team/team.component';
+import { FilterByStringPipe } from './Common/Pipes/filter-by-string.pipe';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { TeamComponent } from './Components/team/team.component';
     FilterCardsPipe,
     CardModalComponent,
     SortCardsPipe,
-    TeamComponent
+    TeamComponent,
+    FilterByStringPipe
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,9 @@ import { TeamComponent } from './Components/team/team.component';
     MatSidenavModule,
     MatListModule,
     MatExpansionModule,
+    MatAutocompleteModule,
     MatDialogModule,
+    MatSnackBarModule,
     DragDropModule
   
   ],

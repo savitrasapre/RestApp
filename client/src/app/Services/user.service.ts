@@ -25,6 +25,7 @@ export class UserService {
   getUserDetailsInParallel(currentUserId : String)
   {
     return forkJoin(
+      this.getAllUsers(),
       this._boardService.getAllBoardsforUser(currentUserId),
       this._teamService.getTeamsForUser(currentUserId)
     );

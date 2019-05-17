@@ -17,7 +17,7 @@ import { Team } from 'src/app/Models/team.model';
 })
 export class UserComponent implements OnInit {
 
-  users : User[];
+  allUsers : Array<User>;
   currentUser : User;
   newBoard : Board = { for_teams : [],name : "", desc : "", due_in : 0, isClosed : false, user_id : "" };
   boards : Board[];
@@ -29,7 +29,6 @@ export class UserComponent implements OnInit {
     private _router : Router,
     private _boardService : BoardService,
     private _userService: UserService,
-    private _route : ActivatedRoute
     ) { }
 
   ngOnInit() {
@@ -49,9 +48,10 @@ export class UserComponent implements OnInit {
   {
     this.currentUser = this._authService.getuser();
     this._userService.getUserDetailsInParallel(this.currentUser._id).subscribe(userData => {
-      this.boards = userData[0];
+      this.allUsers = userData[0];
+      this.boards = userData[1];
       this.pagedBoardList = this.boards.slice(0,10);
-      console.log(userData[1]);
+      console.log(userData[2]);
     });
   }
 
@@ -68,6 +68,8 @@ export class UserComponent implements OnInit {
   {
     this._router.navigate(['board',clickedBoard._id]);
   }
+
+  
 
   createBoard(boardName : String)
   {

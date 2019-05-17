@@ -2,7 +2,7 @@
     <button mat-icon-button ><mat-icon>menu</mat-icon></button>
     <h1 class="app-name">Home</h1>
 </mat-toolbar>
-<h2> Welcome back, {{ currentUser.fullname }} </h2>
+<h2 *ngIf="currentUser"> Welcome back, {{ currentUser.fullname }} </h2>
 
 <div>
     <p>Personal boards : </p>
@@ -37,5 +37,5 @@
 
 <div class="teams">
     <h3>Teams</h3>
-    <app-team></app-team>
+    <app-team [allUsers]="allUsers"></app-team>
 </div>

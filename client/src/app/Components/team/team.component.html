@@ -1,16 +1,22 @@
 <div class="eachTeam" *ngFor="let team of userTeams">
-    <mat-grid-list cols="4" rowHeight="200px">
-        <mat-grid-tile>
             <div class="team-list-header" style="display:inline-block">
                 <h3> {{ team.name }} </h3>
-                 <button mat-button> Boards </button> 
-                <button mat-button> Members </button> 
+                <button mat-button> Boards </button> 
+                <button mat-button> Members({{team.idMembers.length}})</button> 
                 <button mat-button> Settings </button> 
-                <div><mat-card>{{ team.idMembers }}</mat-card> </div>   
-            </div>
-            <!-- -->
-        </mat-grid-tile>
-    </mat-grid-list>
+                <div>
+                    <p>{{resolveIdToUserNames(team.idMembers)}}</p>
+                </div>
+                <form #addTeamMembers (ngSubmit)="updateTeam(searchName.value,team)" >
+                    <mat-form-field>
+                        <input matInput #searchName placeholder="Search" [matAutocomplete]="auto">
+                    </mat-form-field>
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let user of allUsers" [value]="user.fullname">{{user.fullname}}</mat-option>
+                    </mat-autocomplete>
+                    <button mat-button style="display:none" type="submit">Add Member</button> 
+                </form>
+            </div> 
 </div>
 <form #createTeamForm="ngForm" (ngSubmit)="createTeam()">
     <div>
@@ -22,4 +28,3 @@
         <button mat-button style="display:none" type="submit">Create</button> 
     </div>
 </form>
-

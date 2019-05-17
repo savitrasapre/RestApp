@@ -4,6 +4,7 @@ import { Team } from '../Models/team.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
+import { User } from '../Models/user.model';
 
 
 @Injectable({
@@ -32,8 +33,12 @@ export class TeamService {
   createTeam(teamToCreate: Team) : Observable<Team>
   {
     console.log("createTeam Called");
-    
     return this._http.post<Team>(`${environment.serverURL}/${this._endpoint}`,teamToCreate).pipe(tap(teamCreated => this.teamsForCurrentUser.push(teamCreated)));
   }
   
+  addUserToTeam(onTeam: Team): Observable<Team>
+  {
+    return this._http.put<Team>(`${environment.serverURL}/${this._endpoint}/${onTeam._id}`, onTeam);
+  }
+
 }
