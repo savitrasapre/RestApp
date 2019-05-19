@@ -3,5 +3,6 @@ jdk: oraclejdk11
 deploy:
  provider: heroku
  api-key: 
-  secure: $HEROKU_API_KEY
-  app: task-manager-restful
+  secure: ef30cf5b-342e-435a-bd70-10f47533f9f3
+ app: 
+  develop: task-manager-restful
