@@ -6,5 +6,8 @@ mat-grid-list {
 mat-grid-tile {
   width: 200px;
 }
-  
+
+.topic-title {
+  font-size: medium;
+}
   

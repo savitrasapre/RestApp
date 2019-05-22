@@ -5,12 +5,10 @@
 <h2 *ngIf="currentUser"> Welcome back, {{ currentUser.fullname }} </h2>
 
 <div>
-    <p>Personal boards : </p>
-    <mat-paginator [length]="length"
-        [pageSize]="10"
-        [pageSizeOptions]="pageSizeOptions"
-        (page)="pageEvent = OnPageChange($event)">
-    </mat-paginator>
+    <div style="display:inline-flex">
+        <mat-icon>person_outline</mat-icon>
+        <span class="topic-title">Personal Boards</span>
+    </div>
     <mat-grid-list cols="4" rowHeight="70px" >
         <mat-grid-tile class="board-item" *ngFor="let board of pagedBoardList" (click)="navigateToBoard(board)">
             <!-- <mat-card  (click)="navigateToBoard(board)">
@@ -33,6 +31,11 @@
                     </div>
         </mat-grid-tile>
     </mat-grid-list>
+    <mat-paginator [length]="length"
+        [pageSize]="10"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = OnPageChange($event)">
+    </mat-paginator>
 </div>
 
 <div class="teams">

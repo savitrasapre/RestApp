@@ -13,3 +13,7 @@ mat-grid-list {
 mat-grid-tile {
   background:#0079BF;
 }
+
+.topic-title {
+  font-size: medium;
+}

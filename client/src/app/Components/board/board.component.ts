@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BoardService } from 'src/app/Services/board.service';
 import { Board } from 'src/app/Models/board.model';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { mergeMap } from 'rxjs/operators';
 import { ListService } from 'src/app/Services/list.service';
 import { List } from 'src/app/Models/list.model';
 import { ListComponent } from '../list/list.component';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-board',
@@ -18,7 +19,13 @@ export class BoardComponent implements OnInit {
   boardIDFromURL : String;
   isAllDataSet = false;
   
-  constructor(private _boardService : BoardService, private _activatedRoute : ActivatedRoute, private _listService : ListService ) { }
+  constructor(
+    private _boardService : BoardService,
+    private _activatedRoute : ActivatedRoute, 
+    private _listService : ListService,
+    private _authService : AuthService,
+    private router : Router 
+    ) { }
 
   ngOnInit() {
     this._activatedRoute.paramMap.pipe(
@@ -55,6 +62,11 @@ export class BoardComponent implements OnInit {
      this._listService.archiveList(listToOpen,false).subscribe(updatedListFromServer => {
         console.log("flipped to false");
     });    
+  }
+
+  navigateToHome()
+  {
+    this.router.navigate(['user',this._authService.getuser()._id,'boards']);
   }
   
 }

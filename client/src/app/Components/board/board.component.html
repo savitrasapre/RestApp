@@ -1,6 +1,12 @@
 <mat-toolbar color="primary" class="toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="app-name">Board Contents</h1>
+    <span style="flex: 1 1 auto"></span>
+    <div class="user-settings">
+      <button mat-icon-button style="float:right" aria-label="Home" (click)="navigateToHome()">
+        <mat-icon>home</mat-icon>
+      </button>
+    </div>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #snav mode="push">

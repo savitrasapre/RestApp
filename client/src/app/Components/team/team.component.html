@@ -1,9 +1,14 @@
 <div class="eachTeam" *ngFor="let team of userTeams">
             <div class="team-list-header" style="display:inline-block">
-                <h3> {{ team.name }} </h3>
-                <button mat-button> Boards </button> 
-                <button mat-button> Members({{team.idMembers.length}})</button> 
-                <button mat-button> Settings </button> 
+                <div class="topic-title" style="display:inline-flex">
+                    <mat-icon>people_outline</mat-icon>
+                    <span> {{ team.name }}</span>
+                </div>
+                <div>
+                    <button mat-button style="background: #3f51B5; margin-right: 10px"><mat-icon style="color:white">assessment</mat-icon> <i style="color:white">Boards</i> </button>
+                    <button mat-button style="background:#3f51B5; margin-right: 10px"> <mat-icon style="color:white">people_outline</mat-icon> <i style="color:white">Members({{team.idMembers.length}})</i></button>
+                    <button mat-button style="background:#3f51B5; margin-right: 10px"><mat-icon style="color:white">settings</mat-icon> <i style="color:white">Settings</i> </button>
+                </div>
                 <div>
                     <p>{{resolveIdToUserNames(team.idMembers)}}</p>
                 </div>
