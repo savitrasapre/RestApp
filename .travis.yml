@@ -8,3 +8,4 @@ deploy:
   develop: task-manager-restful
  on:
   repo: savitrasapre/RestApp
+  all_branches: true
