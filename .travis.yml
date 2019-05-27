@@ -2,8 +2,7 @@ language: java
 jdk: oraclejdk11
 deploy:
   provider: heroku
-  app:
-    develop: task-manager-restful
+  app: task-manager-restful
   on:
     repo: savitrasapre/RestApp
     all_branches: true
